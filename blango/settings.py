@@ -55,7 +55,8 @@ class Dev(Configuration): #in development
       'django.contrib.staticfiles',
       'blog',
       'crispy_forms',
-      'crispy_bootstrap5'
+      'crispy_bootstrap5',
+      "debug_toolbar",
   ]
   
   PASSWORD_HASHERS = [
@@ -73,7 +74,9 @@ class Dev(Configuration): #in development
       'django.contrib.auth.middleware.AuthenticationMiddleware',
       'django.contrib.messages.middleware.MessageMiddleware',
       #'django.middleware.clickjacking.XFrameOptionsMiddleware',
+      "debug_toolbar.middleware.DebugToolbarMiddleware",
   ]
+  INTERNAL_IPS = ["192.168.11.179"]
 
   ROOT_URLCONF = 'blango.urls'
 
