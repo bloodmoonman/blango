@@ -22,6 +22,7 @@ class Dev(Configuration): #in development
   # Build paths inside the project like this: BASE_DIR / 'subdir'.
   BASE_DIR = Path(__file__).resolve().parent.parent
 
+  
 
   # Quick-start development settings - unsuitable for production
   # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -44,6 +45,7 @@ class Dev(Configuration): #in development
   CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 
+  AUTH_USER_MODEL = "blango_auth.User"
   # Application definition
 
   INSTALLED_APPS = [
@@ -53,10 +55,12 @@ class Dev(Configuration): #in development
       'django.contrib.sessions',
       'django.contrib.messages',
       'django.contrib.staticfiles',
+      "blango_auth",
       'blog',
       'crispy_forms',
       'crispy_bootstrap5',
       "debug_toolbar",
+      
   ]
   
   PASSWORD_HASHERS = [

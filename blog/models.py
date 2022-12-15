@@ -5,6 +5,15 @@ from django.contrib.contenttypes.models import ContentType
 
 # Create your models here.
 
+class AuthorProfile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="profile")
+    #this AUTH_USER_MODEL you would also use it with default User model, provided by django
+    #however by adding AUTH_USER_MODEL = "blango_auth.User" we can point to the User model that we created
+    bio = models.TextField()
+
+    def __str__(self):
+        return f"{self.__class__.__name__} object for {self.user}"
+        
 class Tag(models.Model):
     value = models.TextField(max_length=100)
 
