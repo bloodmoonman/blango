@@ -60,6 +60,7 @@ class Dev(Configuration): #in development
       'crispy_forms',
       'crispy_bootstrap5',
       "debug_toolbar",
+      "rest_framework",
       
   ]
   
