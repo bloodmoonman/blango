@@ -26,5 +26,12 @@ urlpatterns += [
     path("auth/", include("rest_framework.urls")),
     path("token-auth/", views.obtain_auth_token),
     path("", include(router.urls)), #for instance you can set the url for 
-]                                          #path("blabla/", include(router.urls)) and it would
-                                           #work as /api/v1/blabla/tags tags here is from router.register("tags", TagViewSet)
+                                    #path("blabla/", include(router.urls)) and it would
+                                    #work as /api/v1/blabla/tags tags here is from router.register("tags", TagViewSet)
+    path(
+        "posts/by-time/<str:period_name>/",
+        PostViewSet.as_view({"get": "list"}),
+        name="posts-by-time",
+    ),
+
+]
