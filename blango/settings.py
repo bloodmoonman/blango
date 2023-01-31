@@ -23,6 +23,9 @@ class Dev(Configuration): #in development
   # Build paths inside the project like this: BASE_DIR / 'subdir'.
   BASE_DIR = Path(__file__).resolve().parent.parent
 
+  MEDIA_ROOT = BASE_DIR / "media"
+  MEDIA_URL = "/media/"
+
   EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
   ACCOUNT_ACTIVATION_DAYS = 7 #the time for users to activate their acc
 
@@ -98,6 +101,7 @@ class Dev(Configuration): #in development
       "rest_framework",
       "rest_framework.authtoken",
       "django_filters",
+      "versatileimagefield",
       
   ]
   
