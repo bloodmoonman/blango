@@ -1,3 +1,18 @@
+['/api/v1/posts/', '/', '/abadurl/'].forEach(url => {
+  fetch(this.props.url).then(response => {
+    if (response.status !== 200) {
+      throw new Error('Invalid status from server: ' + response.statusText)
+    }
+
+    return response.json()
+  }).then(data => {
+    // do something with data, for example
+    console.log(data)
+  }).catch(e => {
+    console.error(e)
+  })
+})
+
 class PostRow extends React.Component {
   render () {
     const post = this.props.post
@@ -25,8 +40,10 @@ class PostRow extends React.Component {
 
 class PostTable extends React.Component {
   state = {
-    dataLoaded: true,
-    data: {
+    dataLoaded: false,
+    data: null
+  }
+
       results: [
         {
           id: 15,
@@ -77,10 +94,37 @@ class PostTable extends React.Component {
       </tbody>
     </table>
   }
+    componentDidMount () {
+    fetch('/api/v1/posts/').then(response => {
+      if (response.status !== 200) {
+        throw new Error('Invalid status from server: ' + response.statusText)
+      }
+
+      return response.json()
+    }).then(data => {
+      this.setState({
+        dataLoaded: true,
+        data: data
+      })
+    }).catch(e => {
+      console.error(e)
+      this.setState({
+        dataLoaded: true,
+        data: {
+          results: []
+        }
+      })
+    })
+  }
+
 }
 
 const domContainer = document.getElementById('react_root')
 ReactDOM.render(
-  React.createElement(PostTable),
+  React.createElement(
+    PostTable,
+    {url: postListUrl}
+  ),
   domContainer
 )
+
